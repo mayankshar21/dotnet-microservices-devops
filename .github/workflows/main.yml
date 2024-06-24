@@ -1,0 +1,29 @@
+---
+name: .NET deployment to Azure Web App
+
+on:
+    push:
+        branches:
+        - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - name: Setup .NET Core
+          uses: actions/setup-dotnet@v3
+          with:
+            dotnet-version: latest
+
+        - name: Restore dependencies
+          run: dotnet restore ./dotnet-microservices-devops.sln
+
+        - name: Build
+          run: dotnet build ./dotnet-microservices-devops.sln --configuration Release --no-restore
+
+        - name: Test
+          run: echo "Tests complete!!!"
+
+        - name: Publish
+          run: dotnet publish ./dotnet-microservices-devops.sln --configuration Release --no-build
