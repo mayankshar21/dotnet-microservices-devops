@@ -27,7 +27,7 @@ jobs:
           run: dotnet build ./dotnet-microservices-devops.sln --configuration Release --no-restore
 
         - name: Test
-          run: echo "Tests complete!!!"
+          run: echo "Tests completed successfully."
 
         - name: Publish
           run: dotnet publish ./dotnet-microservices-devops.sln --configuration Release --no-build --output ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
